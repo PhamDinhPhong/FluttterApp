@@ -1,7 +1,6 @@
-import 'package:figma_app/App/OnBoarding_01.dart';
+import 'package:figma_app/App/OnBoaring/OnBoarding_01.dart';
 import 'package:flutter/material.dart';
 
-import 'App/LoginSignUp.dart';
 // import 'Model/post.dart';
 // import 'network/network_request.dart';
 void main() {
@@ -16,23 +15,13 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
-
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true
+          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+          useMaterial3: true),
+      home: Scaffold(
+        body: const OnBoarding_01(),
       ),
-    home: const OnBoarding_01(),
-
-    debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
-
-
-
-
-
-
-
-
-
