@@ -157,34 +157,36 @@ class _ForgorPasswordState extends State<ForgorPassword> {
   }
 
   Future<void> sendMail(String email) async {
-    try {
-      Response response = await post(
-
-          // Uri.parse('https://dummyjson.com/auth/login/api/user/forgotpassword/'),
-          Uri.parse('https://192.168.1.21:5555/api/user/forgotpassword/'),
-          body: {
-            'email': email,
-          });
-      print(response.body);
-
-      Data data = Data.fromJson(jsonDecode(response.body.toString()));
-      if (response.statusCode == 200) {
-        print('Response body: ${response.body}');
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(data.success ? data.mess : 'Have an error'),
-          backgroundColor: data.success ? Colors.greenAccent : Colors.red,
-        ));
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => CheckMail()));
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(data.mess),
-          backgroundColor: data.success ? Colors.greenAccent : Colors.red,
-        ));
-      }
-    } catch (e) {
-      print(e.toString());
-    }
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => CheckMail()));
+    // try {
+    //   Response response = await post(
+    //
+    //       // Uri.parse('https://dummyjson.com/auth/login/api/user/forgotpassword/'),
+    //       Uri.parse('https://192.168.1.21:5555/api/user/forgotpassword/'),
+    //       body: {
+    //         'email': email,
+    //       });
+    //   print(response.body);
+    //
+    //   Data data = Data.fromJson(jsonDecode(response.body.toString()));
+    //   if (response.statusCode == 200) {
+    //     print('Response body: ${response.body}');
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text(data.success ? data.mess : 'Have an error'),
+    //       backgroundColor: data.success ? Colors.greenAccent : Colors.red,
+    //     ));
+    //     Navigator.push(
+    //         context, MaterialPageRoute(builder: (context) => CheckMail()));
+    //   } else {
+    //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //       content: Text(data.mess),
+    //       backgroundColor: data.success ? Colors.greenAccent : Colors.red,
+    //     ));
+    //   }
+    // } catch (e) {
+    //   print(e.toString());
+    // }
   }
 }
 

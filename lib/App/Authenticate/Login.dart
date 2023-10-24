@@ -1,5 +1,9 @@
 import 'dart:convert';
 import 'package:figma_app/App/Authenticate/ForgotPassword.dart';
+import 'package:figma_app/App/Explore/Explore.dart';
+import 'package:figma_app/App/Guide/Guide.dart';
+import 'package:figma_app/App/Home/HomeTours..dart';
+import 'package:figma_app/App/Home/SeeMore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;
 import '../Home.dart';
@@ -256,113 +260,114 @@ class _LoginState extends State<Login> {
   }
 
   Future<void> login(String email, String password) async {
-    var reqBody = {'email': email, 'password': password};
-    try {
-      Response response = await post(
-          Uri.parse(
-              'https://e-commerce-backend-u0i4.onrender.com/api/user/login/'),
-          headers: {"Content-Type": "application/json"},
-          body: jsonEncode(reqBody));
-      // final data = BaseResponse<Token>.fromJson(jsonDecode(response), () => Token());
-
-      if (email.isEmpty || password.isEmpty) {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text(
-            "Missing input",
-          ),
-          backgroundColor: Colors.red,
-        ));
-      } else if (response.statusCode == 200) {
-        var jsonResponse = jsonDecode(response.body);
-        if (jsonResponse['success']) {
-          print(jsonResponse['userData']);
-          var myData = jsonResponse['userData'];
-          // prefs.setString('token', myToken);
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => Home(userList: myData)));
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text("Login success")));
-        }
-        // print('Response body: ${response.body}');
-      } else if (response.statusCode == 404) {
-        print('Not found');
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-          content: Text("Invalid Credential"),
-          backgroundColor: Colors.red,
-        ));
-      }
-    } catch (e) {
-      print(e.toString());
-    }
+    Navigator.push(context, MaterialPageRoute(builder: (context) => explore()));
+    //   var reqBody = {'email': email, 'password': password};
+    //   try {
+    //     Response response = await post(
+    //         Uri.parse(
+    //             'https://e-commerce-backend-u0i4.onrender.com/api/user/login/'),
+    //         headers: {"Content-Type": "application/json"},
+    //         body: jsonEncode(reqBody));
+    //     // final data = BaseResponse<Token>.fromJson(jsonDecode(response), () => Token());
+    //
+    //     if (email.isEmpty || password.isEmpty) {
+    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //         content: Text(
+    //           "Missing input",
+    //         ),
+    //         backgroundColor: Colors.red,
+    //       ));
+    //       } else if (response.statusCode == 200) {
+    //         var jsonResponse = jsonDecode(response.body);
+    //         if (jsonResponse['success']) {
+    //           print(jsonResponse['userData']);
+    //           var myData = jsonResponse['userData'];
+    //           // prefs.setString('token', myToken);
+    //           Navigator.push(context,
+    //               MaterialPageRoute(builder: (context) => Home(userList: myData)));
+    //           ScaffoldMessenger.of(context)
+    //               .showSnackBar(SnackBar(content: Text("Login success")));
+    //         }
+    //       print('Response body: ${response.body}');
+    //     } else if (response.statusCode == 404) {
+    //       print('Not found');
+    //     } else {
+    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+    //         content: Text("Invalid Credential"),
+    //         backgroundColor: Colors.red,
+    //       ));
+    //     }
+    //   } catch (e) {
+    //     print(e.toString());
+    //   }
   }
 }
 
-class BaseResponse<T> {
-  bool success;
-  T userData;
-
-  BaseResponse({required this.success, required this.userData});
-
-  BaseResponse parseJson(Map<String, dynamic> json, BaseObject target) {
-    return BaseResponse(
-      success: json['success'],
-      userData: target.fromJson(json['userData']),
-    );
-  }
-}
-
-abstract class BaseObject<T> {
-  T fromJson(Map<String, dynamic> json);
-}
-
-class Token extends BaseObject<Token> {
-  String accessToken;
-  List<dataUser> userdata;
-
-  Token({required this.accessToken, required this.userdata});
-
-  factory Token.fromJson(Map<String, dynamic> json) => Token(
-        accessToken: json["accessToken"],
-        userdata: parseProductList(json),
-      );
-
-  static List<dataUser> parseProductList(Map<String, dynamic> map) {
-    if (map['userData'] is List) {
-      var list = map['userData'] as List;
-      return list.map((user) => dataUser.fromJson(user)).toList();
-    } else {
-      // Handle the case where 'userData' is not a list, perhaps by returning an empty list or throwing an exception.
-      return [];
-    }
-  }
-
-  @override
-  Token fromJson(Map<String, dynamic> json) {
-    return Token.fromJson(json);
-  }
-}
-
-class dataUser {
-  String id;
-  String firstname;
-  String lastname;
-  String email;
-  String mobile;
-
-  dataUser({
-    required this.id,
-    required this.firstname,
-    required this.lastname,
-    required this.email,
-    required this.mobile,
-  });
-
-  factory dataUser.fromJson(Map<String, dynamic> json) => dataUser(
-        id: json["id"],
-        firstname: json["firstname"].toString(),
-        lastname: json["lastname"].toString(),
-        email: json["email"].toString(),
-        mobile: json["mobile"],
-      );
-}
+// class BaseResponse<T> {
+//   bool success;
+//   T userData;
+//
+//   BaseResponse({required this.success, required this.userData});
+//
+//   BaseResponse parseJson(Map<String, dynamic> json, BaseObject target) {
+//     return BaseResponse(
+//       success: json['success'],
+//       userData: target.fromJson(json['userData']),
+//     );
+//   }
+// }
+//
+// abstract class BaseObject<T> {
+//   T fromJson(Map<String, dynamic> json);
+// }
+//
+// class Token extends BaseObject<Token> {
+//   String accessToken;
+//   List<dataUser> userdata;
+//
+//   Token({required this.accessToken, required this.userdata});
+//
+//   factory Token.fromJson(Map<String, dynamic> json) => Token(
+//         accessToken: json["accessToken"],
+//         userdata: parseProductList(json),
+//       );
+//
+//   static List<dataUser> parseProductList(Map<String, dynamic> map) {
+//     if (map['userData'] is List) {
+//       var list = map['userData'] as List;
+//       return list.map((user) => dataUser.fromJson(user)).toList();
+//     } else {
+//       // Handle the case where 'userData' is not a list, perhaps by returning an empty list or throwing an exception.
+//       return [];
+//     }
+//   }
+//
+//   @override
+//   Token fromJson(Map<String, dynamic> json) {
+//     return Token.fromJson(json);
+//   }
+// }
+//
+// class dataUser {
+//   String id;
+//   String firstname;
+//   String lastname;
+//   String email;
+//   String mobile;
+//
+//   dataUser({
+//     required this.id,
+//     required this.firstname,
+//     required this.lastname,
+//     required this.email,
+//     required this.mobile,
+//   });
+//
+//   factory dataUser.fromJson(Map<String, dynamic> json) => dataUser(
+//         id: json["id"],
+//         firstname: json["firstname"].toString(),
+//         lastname: json["lastname"].toString(),
+//         email: json["email"].toString(),
+//         mobile: json["mobile"],
+//       );
+// }

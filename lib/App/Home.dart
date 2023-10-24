@@ -1,6 +1,7 @@
 import 'package:figma_app/App/Chat/Chat.dart';
 import 'package:figma_app/App/Authenticate/Login.dart';
 import 'package:figma_app/App/Chat/Navigator_TabBar.dart';
+import 'package:figma_app/App/Explore/Explore.dart';
 import 'package:figma_app/App/Guide/Guide.dart';
 import 'package:figma_app/App/Home/HomeTours..dart';
 import 'package:figma_app/App/Home/SeeMore.dart';
@@ -46,7 +47,7 @@ class _HomeState extends State<Home> {
                   child: GestureDetector(
                     onTap: () {
                       Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => guide()));
+                          MaterialPageRoute(builder: (context) => explore()));
                     },
                     child: Container(
                       width: 200,

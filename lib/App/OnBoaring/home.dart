@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class SeeMore extends StatefulWidget {
-  const SeeMore({super.key});
+class home extends StatefulWidget {
+  const home({super.key});
 
   @override
-  State<SeeMore> createState() => _SeeMoreState();
+  State<home> createState() => _homeState();
 }
 
-class _SeeMoreState extends State<SeeMore> {
+class _homeState extends State<home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -1318,20 +1318,25 @@ class _SeeMoreState extends State<SeeMore> {
                   borderRadius: BorderRadius.circular(10)),
             ),
             Container(
-              margin: const EdgeInsets.only(top: 167, left: 70),
-              child: TextField(
+              margin: const EdgeInsets.only(top: 175, left: 20),
+              child: const TextField(
                 decoration: InputDecoration(
-                  labelText: 'Hi, Where do you want to explore?',
-                ),
+                    prefixIcon: Icon(
+                      Icons.search,
+                    ),
+                    hintText: "Hi, where do you want to explore? ",
+                    hintStyle: TextStyle(fontSize: 13, color: Colors.green),
+                    border: InputBorder.none),
+                style: TextStyle(color: Colors.green, fontSize: 20),
               ),
             ),
-            Container(
-              margin: EdgeInsets.only(top: 190, left: 30),
-              child: Icon(
-                Icons.search,
-                color: Colors.green,
-              ),
-            )
+            // Container(
+            //   margin: EdgeInsets.only(top: 190, left: 30),
+            //   child: Icon(
+            //     Icons.search,
+            //     color: Colors.green,
+            //   ),
+            // )
           ])
         ]),
       ]),
