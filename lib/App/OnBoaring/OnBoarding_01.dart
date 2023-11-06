@@ -3,7 +3,7 @@ import 'package:figma_app/App/Authenticate/Login.dart';
 import 'package:figma_app/App/OnBoaring/OnBoarding_02.dart';
 import 'package:figma_app/App/OnBoaring/OnBoarding_03.dart';
 
-import '../Home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 

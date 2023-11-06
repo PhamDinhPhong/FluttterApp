@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:figma_app/App/Authenticate/Login.dart';
 
-import '../Home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 
@@ -155,8 +155,7 @@ class _CheckMailState extends State<CheckMail> {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Login success")));
         print('Response body: ${response.body}');
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => Home()));
+
       } else if (response.statusCode == 404) {
         print('Not found');
       } else {

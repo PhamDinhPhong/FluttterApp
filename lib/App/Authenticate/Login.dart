@@ -1,12 +1,9 @@
 import 'dart:convert';
 import 'package:figma_app/App/Authenticate/ForgotPassword.dart';
-import 'package:figma_app/App/Explore/Explore.dart';
-import 'package:figma_app/App/Guide/Guide.dart';
-import 'package:figma_app/App/Home/HomeTours..dart';
-import 'package:figma_app/App/Home/SeeMore.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert' as convert;
-import '../Home.dart';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart';
 import 'SignUp.dart';
@@ -22,6 +19,7 @@ class _LoginState extends State<Login> {
   TextEditingController emailController = TextEditingController();
   TextEditingController passwordController = TextEditingController();
   late SharedPreferences prefs;
+
   @override
   void initState() {
     // TODO: implement initState
@@ -35,7 +33,10 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
+    double screenWidth = MediaQuery
+        .of(context)
+        .size
+        .width;
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(0),
@@ -91,7 +92,7 @@ class _LoginState extends State<Login> {
                             child: Text(
                               'Welcome back, Guys',
                               style:
-                                  TextStyle(fontSize: 24, color: Colors.green),
+                              TextStyle(fontSize: 24, color: Colors.green),
                             ),
                           ),
                           SizedBox(
@@ -127,7 +128,8 @@ class _LoginState extends State<Login> {
                     Row(
                       children: [
                         GestureDetector(
-                          onTap: () => {
+                          onTap: () =>
+                          {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -173,42 +175,42 @@ class _LoginState extends State<Login> {
                     ),
                     Container(
                         child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Container(
-                          width: 40,
-                          height: 40,
-                          child: Image(
-                            image: AssetImage('assets/images/Group 9.png'),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5)),
-                        ),
-                        Container(
-                          width: 40,
-                          margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
-                          height: 40,
-                          child: Image(
-                            image: AssetImage('assets/images/Group 8.png'),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5)),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 40,
-                          child: Image(
-                            image: AssetImage('assets/images/Group 10.png'),
-                          ),
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(5)),
-                        ),
-                      ],
-                    )),
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Container(
+                              width: 40,
+                              height: 40,
+                              child: Image(
+                                image: AssetImage('assets/images/Group 9.png'),
+                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                            Container(
+                              width: 40,
+                              margin: EdgeInsets.fromLTRB(20, 0, 20, 0),
+                              height: 40,
+                              child: Image(
+                                image: AssetImage('assets/images/Group 8.png'),
+                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                            Container(
+                              width: 40,
+                              height: 40,
+                              child: Image(
+                                image: AssetImage('assets/images/Group 10.png'),
+                              ),
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(5)),
+                            ),
+                          ],
+                        )),
                     SizedBox(
                       height: 40,
                     ),
@@ -222,7 +224,8 @@ class _LoginState extends State<Login> {
                           ),
                         ),
                         GestureDetector(
-                          onTap: () => {
+                          onTap: () =>
+                          {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
@@ -259,115 +262,6 @@ class _LoginState extends State<Login> {
     );
   }
 
-  Future<void> login(String email, String password) async {
-    Navigator.push(context, MaterialPageRoute(builder: (context) => explore()));
-    //   var reqBody = {'email': email, 'password': password};
-    //   try {
-    //     Response response = await post(
-    //         Uri.parse(
-    //             'https://e-commerce-backend-u0i4.onrender.com/api/user/login/'),
-    //         headers: {"Content-Type": "application/json"},
-    //         body: jsonEncode(reqBody));
-    //     // final data = BaseResponse<Token>.fromJson(jsonDecode(response), () => Token());
-    //
-    //     if (email.isEmpty || password.isEmpty) {
-    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //         content: Text(
-    //           "Missing input",
-    //         ),
-    //         backgroundColor: Colors.red,
-    //       ));
-    //       } else if (response.statusCode == 200) {
-    //         var jsonResponse = jsonDecode(response.body);
-    //         if (jsonResponse['success']) {
-    //           print(jsonResponse['userData']);
-    //           var myData = jsonResponse['userData'];
-    //           // prefs.setString('token', myToken);
-    //           Navigator.push(context,
-    //               MaterialPageRoute(builder: (context) => Home(userList: myData)));
-    //           ScaffoldMessenger.of(context)
-    //               .showSnackBar(SnackBar(content: Text("Login success")));
-    //         }
-    //       print('Response body: ${response.body}');
-    //     } else if (response.statusCode == 404) {
-    //       print('Not found');
-    //     } else {
-    //       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-    //         content: Text("Invalid Credential"),
-    //         backgroundColor: Colors.red,
-    //       ));
-    //     }
-    //   } catch (e) {
-    //     print(e.toString());
-    //   }
-  }
+  Future<void> login(String email, String password) async {}
 }
 
-// class BaseResponse<T> {
-//   bool success;
-//   T userData;
-//
-//   BaseResponse({required this.success, required this.userData});
-//
-//   BaseResponse parseJson(Map<String, dynamic> json, BaseObject target) {
-//     return BaseResponse(
-//       success: json['success'],
-//       userData: target.fromJson(json['userData']),
-//     );
-//   }
-// }
-//
-// abstract class BaseObject<T> {
-//   T fromJson(Map<String, dynamic> json);
-// }
-//
-// class Token extends BaseObject<Token> {
-//   String accessToken;
-//   List<dataUser> userdata;
-//
-//   Token({required this.accessToken, required this.userdata});
-//
-//   factory Token.fromJson(Map<String, dynamic> json) => Token(
-//         accessToken: json["accessToken"],
-//         userdata: parseProductList(json),
-//       );
-//
-//   static List<dataUser> parseProductList(Map<String, dynamic> map) {
-//     if (map['userData'] is List) {
-//       var list = map['userData'] as List;
-//       return list.map((user) => dataUser.fromJson(user)).toList();
-//     } else {
-//       // Handle the case where 'userData' is not a list, perhaps by returning an empty list or throwing an exception.
-//       return [];
-//     }
-//   }
-//
-//   @override
-//   Token fromJson(Map<String, dynamic> json) {
-//     return Token.fromJson(json);
-//   }
-// }
-//
-// class dataUser {
-//   String id;
-//   String firstname;
-//   String lastname;
-//   String email;
-//   String mobile;
-//
-//   dataUser({
-//     required this.id,
-//     required this.firstname,
-//     required this.lastname,
-//     required this.email,
-//     required this.mobile,
-//   });
-//
-//   factory dataUser.fromJson(Map<String, dynamic> json) => dataUser(
-//         id: json["id"],
-//         firstname: json["firstname"].toString(),
-//         lastname: json["lastname"].toString(),
-//         email: json["email"].toString(),
-//         mobile: json["mobile"],
-//       );
-// }
